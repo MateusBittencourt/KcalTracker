@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateAccountActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/CreateAccount_AppName"
+        android:layout_width="159dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="32dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toStartOf="@+id/CreateAccount_AppLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:srcCompat="@drawable/kcalltracker_noglow" />
+
+    <ImageView
+        android:id="@+id/CreateAccount_AppLogo"
+        android:layout_width="129dp"
+        android:layout_height="179dp"
+        android:layout_marginEnd="16dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:srcCompat="@drawable/appicon" />
+
+    <TextView
+        android:id="@+id/CreateAccount_PageText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:autoSizeTextType="uniform"
+        android:text="@string/createAccount_Text"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/CreateAccount_AppLogo"
+        app:layout_constraintEnd_toStartOf="@+id/CreateAccount_AppLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CreateAccount_AppName" />
+
+    <EditText
+        android:id="@+id/CreateAccount_username"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CreateAccount_PageText"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <EditText
+        android:id="@+id/CreateAccount_email"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textWebEmailAddress"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CreateAccount_username"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <EditText
+        android:id="@+id/CreateAccount_password"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CreateAccount_email"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <EditText
+        android:id="@+id/repassword_createAccount"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/repassword"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CreateAccount_password"
+        tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
+
+
+    <ImageView
+        android:id="@+id/CreateAccount_Button_CreateAccount"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/create_account"
+        android:contextClickable="true"
+        android:onClick="onCreateAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CreateAccount_Text_warning"
+        app:srcCompat="@drawable/button" />
+
+    <TextView
+        android:id="@+id/CreateAccount_Text_CreateAccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="none"
+        android:freezesText="false"
+        android:importantForAccessibility="no"
+        android:text="@string/create_account"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/CreateAccount_Button_CreateAccount"
+        app:layout_constraintEnd_toEndOf="@+id/CreateAccount_Button_CreateAccount"
+        app:layout_constraintStart_toStartOf="@+id/CreateAccount_Button_CreateAccount"
+        app:layout_constraintTop_toTopOf="@+id/CreateAccount_Button_CreateAccount" />
+
+    <TextView
+        android:id="@+id/CreateAccount_Text_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="#FF0000"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repassword_createAccount"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/CreateAccount_Button_goBack"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:contentDescription="@string/goBack"
+        android:onClick="goBack"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar2"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/backbutton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

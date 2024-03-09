@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/Home_UserPhoto"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/userPhoto"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar3"
+        app:srcCompat="@drawable/user" />
+
+    <TextView
+        android:id="@+id/Home_UserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/username"
+        android:text="@string/username"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="?attr/actionMenuTextColor"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+        app:layout_constraintStart_toEndOf="@+id/Home_UserPhoto"
+        app:layout_constraintTop_toTopOf="@+id/toolbar3" />
+
+    <ImageView
+        android:id="@+id/Home_goBack"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/goBack"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar3"
+        app:layout_constraintTop_toTopOf="@+id/toolbar3"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/backbutton" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar4"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar4"
+        app:srcCompat="@drawable/search" />
+
+    <FrameLayout
+        android:id="@+id/Home_Frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3">
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
