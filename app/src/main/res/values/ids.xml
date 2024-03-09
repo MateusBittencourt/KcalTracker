@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="HomePicture" type="id" />
+    <item name="HomeButtonSync" type="id" />
+    <item name="HomeWelcome" type="id" />
+</resources>
