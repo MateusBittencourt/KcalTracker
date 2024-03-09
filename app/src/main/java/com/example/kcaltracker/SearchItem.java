@@ -12,11 +12,12 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import com.example.kcaltracker.model.DatabaseHelper;
+import com.example.kcaltracker.model.AutoSuggestAdapter;
 
 public class SearchItem extends Fragment {
     private  DatabaseHelper db;
 
-    private ArrayAdapter<String> adapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,16 +33,17 @@ public class SearchItem extends Fragment {
 
         db = new DatabaseHelper(getActivity());
         itemInput.setThreshold(2);
+
+        AutoSuggestAdapter adapter = new AutoSuggestAdapter(getActivity(),
+                android.R.layout.simple_spinner_dropdown_item);
+        itemInput.setAdapter(adapter);
         itemInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             public void afterTextChanged(Editable s) {
-                adapter = new ArrayAdapter<>(getActivity(),
-                        android.R.layout.simple_spinner_dropdown_item,
-                        db.getDescricao(itemInput.getText().toString()));
-                itemInput.setAdapter(adapter);
+                adapter.setData(db.getDescricao(itemInput.getText().toString()));
             }
         });
     }
