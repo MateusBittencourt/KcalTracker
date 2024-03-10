@@ -57,12 +57,18 @@ public class HomeActivity extends AppCompatActivity {
     public void onSearch(View view) {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.Home_Frame, searchItem);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
     public void onMain(View view) {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.Home_Frame, tracker);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    public void onBack(View view){
+        super.onBackPressed();
     }
 }

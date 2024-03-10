@@ -167,6 +167,7 @@
         android:textColor="#FF0000"
         android:textSize="20sp"
         android:textStyle="bold|italic"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/repassword_createAccount"
@@ -186,7 +187,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar2"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/backbutton" />
+        app:srcCompat="@drawable/back_icon"
+        app:tint="@color/white" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

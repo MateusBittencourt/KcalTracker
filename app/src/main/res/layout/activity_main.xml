@@ -9,24 +9,22 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/AppLogo"
+        android:id="@+id/imageView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:importantForAccessibility="no"
-        app:layout_constraintBottom_toTopOf="@+id/AppName"
+        android:layout_height="2048dp"
+        android:cropToPadding="false"
+        android:scaleType="fitStart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/appicon"
-        tools:ignore="UnknownId" />
+        app:srcCompat="@drawable/logo" />
 
     <ImageView
         android:id="@+id/AppName"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="32dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +46,8 @@
         android:inputType="text"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AppName"
@@ -67,7 +66,8 @@
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username"
@@ -171,6 +171,7 @@
         android:contextClickable="false"
         android:onClick="onRecoverPassword"
         android:text="@string/forgotPassword"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck"

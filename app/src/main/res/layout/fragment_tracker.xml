@@ -45,7 +45,8 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/add_foodItem"
-                    android:src="@drawable/add"
+                    android:src="@drawable/add_icon"
+                    app:tint="@color/orange"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,7 +56,8 @@
                     android:layout_height="50dp"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/edit_FoodItem"
-                    android:src="@drawable/edit"
+                    android:src="@drawable/edit_icon"
+                    app:tint="@color/orange"
                     app:layout_constraintBottom_toTopOf="@+id/Tracker_Button_More"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/Tracker_Button_Add" />
@@ -67,7 +69,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     android:contentDescription="@string/expand"
-                    android:src="@drawable/more"
+                    app:tint="@color/orange"
+                    android:src="@drawable/more_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 

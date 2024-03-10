@@ -26,10 +26,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:contentDescription="@string/userPhoto"
+        android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/Home_TopToolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/Home_TopToolbar"
-        app:srcCompat="@drawable/user" />
+        app:srcCompat="@drawable/user_icon" />
 
     <TextView
         android:id="@+id/Home_UserName"
@@ -51,12 +52,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:clickable="true"
         android:contentDescription="@string/goBack"
+        android:onClick="onBack"
         app:layout_constraintBottom_toBottomOf="@+id/Home_TopToolbar"
         app:layout_constraintEnd_toEndOf="@+id/Home_TopToolbar"
         app:layout_constraintTop_toTopOf="@+id/Home_TopToolbar"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/backbutton" />
+        app:srcCompat="@drawable/back_icon" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/Home_LowerToolbar"
@@ -79,7 +82,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Home_LowerToolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/Home_LowerToolbar"
-        app:srcCompat="@drawable/search" />
+        app:srcCompat="@drawable/search_icon" />
 
     <ImageView
         android:id="@+id/Home_HomeIcon"
@@ -88,10 +91,11 @@
         android:layout_marginStart="16dp"
         android:clickable="true"
         android:onClick="onMain"
+        android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/Home_LowerToolbar"
-        app:srcCompat="@drawable/home" />
+        app:srcCompat="@drawable/home_icon" />
 
     <FrameLayout
         android:id="@+id/Home_Frame"
