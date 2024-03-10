@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent homeActivity = new Intent(MainActivity.this, HomeActivity.class);
+        homeActivity.putExtra("username", "Testname");
+        homeActivity.putExtra("email", "Testemail");
+        startActivity(homeActivity);
+        finish();
     }
 
     public void login(View view) {

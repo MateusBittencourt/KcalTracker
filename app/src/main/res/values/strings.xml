@@ -24,6 +24,9 @@
     <string name="tokenSent">Token enviado.</string>
     <string name="successChangePassword">Senha trocada com sucesso.</string>
     <string name="userPhoto">Foto do Usuario</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_foodItem">Adicionar Alimento</string>
+    <string name="edit_FoodItem">Editar Alimento</string>
+    <string name="expand">Expandir</string>
 </resources>

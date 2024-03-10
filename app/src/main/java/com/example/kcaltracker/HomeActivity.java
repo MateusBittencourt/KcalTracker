@@ -33,10 +33,9 @@ public class HomeActivity extends AppCompatActivity {
     private TextView welcomeMessage;
     private String username;
     private String email;
-
-    private DatabaseHelper db;
-
-    ArrayAdapter<String> adapter;
+    private SearchItem searchItem = new SearchItem();
+    private Tracker tracker = new Tracker();
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +49,20 @@ public class HomeActivity extends AppCompatActivity {
         TextView text_username= findViewById(R.id.Home_UserName);
         text_username.setText(username);
 
-        SearchItem searchItem = new SearchItem();
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.Home_Frame, tracker);
+        fragmentTransaction.commit();
+    }
 
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-
+    public void onSearch(View view) {
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.Home_Frame, searchItem);
+        fragmentTransaction.commit();
+    }
+
+    public void onMain(View view) {
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.Home_Frame, tracker);
         fragmentTransaction.commit();
     }
 }
