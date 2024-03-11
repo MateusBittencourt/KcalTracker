@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content">
+
+        <com.example.kcaltracker.FoodAutoSuggest
+            android:id="@+id/AddFood_Input_FoodItem"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="@string/insert_food"
+            android:textColor="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddFood_Text_Food"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/AddFood_Input_Grams"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:hint="@string/insert_grams"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:textColor="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/AddFood_Text_Grams"
+            app:layout_constraintTop_toBottomOf="@+id/AddFood_Input_FoodItem"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/AddFood_Text_Food"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/food"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/AddFood_Text_Grams"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/grams"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/AddFood_Input_Grams"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/AddFood_Input_Grams"
+            tools:ignore="TextSizeCheck" />
+
+        <TextView
+            android:id="@+id/AddFood_Text_Meal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/meal"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/AddFood_input_Meal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/AddFood_input_Meal"
+            tools:ignore="TextSizeCheck" />
+
+        <Spinner
+            android:id="@+id/AddFood_input_Meal"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:entries="@array/meals"
+            android:spinnerMode="dropdown"
+            android:textColor="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/AddFood_Text_Meal"
+            app:layout_constraintTop_toBottomOf="@+id/AddFood_Input_Grams" />
+
+        <ImageView
+            android:id="@+id/AddFood_Button_Close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:clickable="true"
+            android:contentDescription="@string/close"
+            android:rotation="45"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/add_icon"
+            app:tint="?android:attr/textColorPrimary"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/AdddFood_Button_Add"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:contentDescription="@string/add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddFood_input_Meal"
+            app:srcCompat="@drawable/button"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/AddFood_Text_Add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autoSizeTextType="none"
+            android:autoText="false"
+            android:clickable="false"
+            android:freezesText="false"
+            android:text="@string/add"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textIsSelectable="false"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/AdddFood_Button_Add"
+            app:layout_constraintEnd_toEndOf="@+id/AdddFood_Button_Add"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/AdddFood_Button_Add"
+            app:layout_constraintTop_toTopOf="@+id/AdddFood_Button_Add"
+            tools:ignore="Deprecated,TextViewEdits" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

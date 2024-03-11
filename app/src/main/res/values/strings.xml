@@ -29,4 +29,19 @@
     <string name="add_foodItem">Adicionar Alimento</string>
     <string name="edit_FoodItem">Editar Alimento</string>
     <string name="expand">Expandir</string>
+    <string name="app_logo">Ilustração de uma maça poligonal em chamas.</string>
+    <string name="password_recovery">Recuperar Senha</string>
+    <string name="insert_food">Adicionar alimento</string>
+    <string name="food">Alimento:</string>
+    <string name="grams">Gramas:</string>
+    <string name="insert_grams">Inserir gramas</string>
+    <string name="meal">Refeição:</string>
+    <string name="breakfast">Café da manha</string>
+    <string name="morning_tea">Lanche da manha</string>
+    <string name="lunch">Almoço</string>
+    <string name="afternoon_tea">Café da tarde</string>
+    <string name="dinner">Janta</string>
+    <string name="supper">Ceia</string>
+    <string name="close">Fechar</string>
+    <string name="add">Adicionar</string>
 </resources>

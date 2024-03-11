@@ -8,7 +8,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import com.example.kcaltracker.model.DatabaseHelper;
@@ -29,7 +28,7 @@ public class SearchItem extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        AutoCompleteTextView itemInput = view.findViewById(R.id.SearchItem_Input);
+        /*AutoCompleteTextView itemInput = view.findViewById(R.id.Search_Input_FoodItem);
 
         db = new DatabaseHelper(getActivity());
         itemInput.setThreshold(2);
@@ -45,6 +44,6 @@ public class SearchItem extends Fragment {
             public void afterTextChanged(Editable s) {
                 adapter.setData(db.getDescricao(itemInput.getText().toString()));
             }
-        });
+        });*/
     }
 }

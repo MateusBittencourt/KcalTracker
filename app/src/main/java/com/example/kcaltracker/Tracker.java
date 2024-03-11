@@ -1,5 +1,6 @@
 package com.example.kcaltracker;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 public class Tracker extends Fragment {
@@ -44,6 +46,8 @@ public class Tracker extends Fragment {
             }
         }).start();
     }
+
+
 
     public int normalizedProgress(int progress, int goal){
         float ratio = (float) progress / (float) goal;

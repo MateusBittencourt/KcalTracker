@@ -10,19 +10,23 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="2048dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="-50dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_logo"
         android:cropToPadding="false"
-        android:scaleType="fitStart"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/AppName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/app_background" />
 
     <ImageView
         android:id="@+id/AppName"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="32dp"
@@ -39,6 +43,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:autofillHints=""
         android:ems="10"
@@ -75,24 +80,23 @@
 
     <ImageView
         android:id="@+id/Button_Login"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:drawingCacheQuality="low"
-        android:foreground="@drawable/button_size"
         android:foregroundTint="#00000000"
         android:importantForAccessibility="no"
         android:onClick="login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintEnd_toStartOf="@+id/CreateAccount_Button_CreateAccount"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:srcCompat="@drawable/button_noshadow"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:srcCompat="@drawable/button"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/text_Login"
+        android:id="@+id/Main_Text_Login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autoSizeTextType="none"
@@ -114,17 +118,18 @@
 
     <ImageView
         android:id="@+id/CreateAccount_Button_CreateAccount"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/login"
         android:contextClickable="true"
         android:onClick="onCreateAccount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button_Login"
-        app:srcCompat="@drawable/button_noshadow"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/Button_Login"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:srcCompat="@drawable/button"
+        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/Text_CreateAccount"
@@ -156,6 +161,7 @@
         android:contextClickable="false"
         android:onClick="recoverPassword"
         android:text="@string/no_account"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="TouchTargetSizeCheck"
@@ -165,14 +171,13 @@
         android:id="@+id/main_forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:contextClickable="false"
         android:onClick="onRecoverPassword"
         android:text="@string/forgotPassword"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck"
         tools:visibility="visible" />

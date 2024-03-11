@@ -40,7 +40,7 @@
         android:contentDescription="@string/username"
         android:text="@string/username"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="?attr/actionMenuTextColor"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/Home_TopToolbar"
         app:layout_constraintStart_toEndOf="@+id/Home_UserPhoto"
         app:layout_constraintTop_toTopOf="@+id/Home_TopToolbar" />

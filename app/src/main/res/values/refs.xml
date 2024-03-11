@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <array name="meals">
+        <item>@string/breakfast</item>
+        <item>@string/lunch</item>
+        <item>@string/afternoon_tea</item>
+        <item>@string/dinner</item>
+        <item>@string/supper</item>
+    </array>
+</resources>

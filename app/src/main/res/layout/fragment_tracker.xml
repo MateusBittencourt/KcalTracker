@@ -44,11 +44,13 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
+                    android:clickable="true"
                     android:contentDescription="@string/add_foodItem"
+                    android:onClick="onAddFoodItem"
                     android:src="@drawable/add_icon"
-                    app:tint="@color/orange"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/orange" />
 
                 <ImageView
                     android:id="@+id/Tracker_Button_Edit"
@@ -110,6 +112,7 @@
                     android:layout_height="27dp"
                     android:text="1500 Kcal"
                     android:textAlignment="center"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/divider"
@@ -122,6 +125,7 @@
                     android:layout_height="27dp"
                     android:text="2000 Kcal"
                     android:textAlignment="center"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/Tracker_ProgressBar"
@@ -134,7 +138,7 @@
                     android:layout_width="0dp"
                     android:layout_height="2dp"
                     android:background="?android:attr/listDivider"
-                    android:backgroundTint="#000000"
+                    android:backgroundTint="?android:attr/textColorPrimary"
                     android:backgroundTintMode="add"
                     app:layout_constraintBottom_toBottomOf="@+id/progressBar"
                     app:layout_constraintEnd_toEndOf="@+id/Tracker_Text_Goal"
