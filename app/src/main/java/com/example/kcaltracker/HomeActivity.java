@@ -2,32 +2,21 @@ package com.example.kcaltracker;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.kcaltracker.model.AutoSuggestAdapter;
 import com.example.kcaltracker.model.DatabaseHelper;
+import com.example.kcaltracker.model.FoodItem;
 
-import java.io.IOException;
+import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity {
     private ImageView profilePicture;
@@ -40,6 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     private FragmentTransaction fragmentTransaction;
     private Dialog myDialog;
     private  DatabaseHelper db;
+    private FoodItem foodItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +65,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onAddFoodItem(View view){
+        //Always first
         myDialog.setContentView(R.layout.popup_add_food);
+        //
+        CalendarView calendarView = (CalendarView) myDialog.findViewById(R.id.AddFood_Calendar_DatePicker);
+        calendarView.setMaxDate(new Date().getTime());
+        FoodAutoSuggest foodAutoSuggest = (FoodAutoSuggest) myDialog.findViewById(R.id.AddFood_Input_FoodItem);
         ImageView closeButton = (ImageView) myDialog.findViewById(R.id.AddFood_Button_Close);
-        ImageView addButton = (ImageView) myDialog.findViewById(R.id.AdddFood_Button_Add);
+        ImageView addButton = (ImageView) myDialog.findViewById(R.id.AddFood_Button_Add);
         closeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View view) {
@@ -88,7 +83,8 @@ public class HomeActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View view) {
-                //ToDo
+                foodItem = foodAutoSuggest.getSelectedItem();
+                Log.d("TestAddFood", foodItem.descricao);
                 myDialog.dismiss();
             }
         });

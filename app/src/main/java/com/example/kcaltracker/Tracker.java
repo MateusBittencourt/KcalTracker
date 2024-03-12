@@ -1,20 +1,15 @@
 package com.example.kcaltracker;
 
-import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 public class Tracker extends Fragment {
-    private Handler hdlr = new Handler();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,17 +23,18 @@ public class Tracker extends Fragment {
         new Thread(new Runnable() {
             int i = 1;
             public void run() {
-                while (i < normalizedProgress(1500,2000)) {
-
+                progressBar.setProgress(0);
+                int normalizedProgress = normalizedProgress(progress,goal);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                while (i < normalizedProgress) {
                     i += 1;
-                    // Update the progress bar and display the current value in text view
-                    hdlr.post(new Runnable() {
-                        public void run() {
-                            progressBar.setProgress(i);
-                        }
-                    });
+                    progressBar.setProgress(i);
                     try {
-                        Thread.sleep(1);
+                        Thread.sleep(0, 50);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -47,9 +43,10 @@ public class Tracker extends Fragment {
         }).start();
     }
 
-
-
     public int normalizedProgress(int progress, int goal){
+        if (progress >= goal){
+            return 2800;
+        }
         float ratio = (float) progress / (float) goal;
         return (int) (ratio * 2800);
     }

@@ -5,19 +5,19 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 
 import com.example.kcaltracker.model.DatabaseHelper;
 import com.example.kcaltracker.model.AutoSuggestAdapter;
+import com.example.kcaltracker.model.FoodItem;
 
-public class SearchItem extends Fragment {
+public  class SearchItem extends Fragment implements FoodAutoSuggest.FoodAutoSuggestCallback {
     private  DatabaseHelper db;
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,22 +28,17 @@ public class SearchItem extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        /*AutoCompleteTextView itemInput = view.findViewById(R.id.Search_Input_FoodItem);
-
-        db = new DatabaseHelper(getActivity());
-        itemInput.setThreshold(2);
-
-        AutoSuggestAdapter adapter = new AutoSuggestAdapter(getActivity(),
-                android.R.layout.simple_spinner_dropdown_item);
-        itemInput.setAdapter(adapter);
-        itemInput.addTextChangedListener(new TextWatcher() {
+        FoodAutoSuggest itemInput = view.findViewById(R.id.Search_Input_FoodItem);
+        itemInput.setFoodAutoSuggestCallback(new FoodAutoSuggest.FoodAutoSuggestCallback() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            public void afterTextChanged(Editable s) {
-                adapter.setData(db.getDescricao(itemInput.getText().toString()));
+            public void onFoodItemSaved(FoodItem foodItem) {
+                Log.d("Test1", foodItem.descricao);
             }
-        });*/
+        });
+    }
+
+    @Override
+    public void onFoodItemSaved(FoodItem foodItem) {
+
     }
 }
