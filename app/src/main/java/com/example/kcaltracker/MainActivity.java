@@ -1,9 +1,12 @@
 package com.example.kcaltracker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.*;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -12,114 +15,109 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.kcaltracker.model.ApiRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-
+    private SharedPreferences settings;
+    private  SharedPreferences.Editor editor;
+    private OkHttpClient client;
+    private MediaType MEDIA_TYPE;
+    private ApiRequest apiRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent homeActivity = new Intent(MainActivity.this, HomeActivity.class);
-        homeActivity.putExtra("username", "Testname");
-        homeActivity.putExtra("email", "Testemail");
-        startActivity(homeActivity);
-        finish();
-    }
+        apiRequest = new ApiRequest();
+        settings = getSharedPreferences("Login", Context.MODE_PRIVATE);
+        editor = settings.edit();
 
-    public void login(View view) {
-        MediaType MEDIA_TYPE = MediaType.parse("application/json");
-        String url = "http://192.168.18.32:3000/User/login";
-        OkHttpClient client = new OkHttpClient();
-
-        String json = null;
-        EditText username= findViewById(R.id.username);
-        EditText password= findViewById(R.id.password);
-
-        try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("username", username.getText().toString());
-            jsonObject.put("password", password.getText().toString());
-
-            json = jsonObject.toString();
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        }
-        RequestBody body = RequestBody.create(json, MEDIA_TYPE);
-        Request request = new Request.Builder()
-                .url(url)
-                .post(body)
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "Usuário ou senha incorretos",
-                                Toast.LENGTH_LONG
-                        ).show();
-                    }
-                });
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (!response.isSuccessful()) {
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(
-                                    getApplicationContext(),
-                                    "Usuário ou senha incorretos",
-                                    Toast.LENGTH_LONG
-                            ).show();
-                        }
-                    });
-                } else {
-                    String responseBody = response.body().string();
-                    Log.d("response", responseBody);
-                    JSONObject userObj = null;
-                    String responseUsername;
-                    String responseEmail;
-                    try {
-                        userObj = new JSONObject(responseBody);
-                        responseUsername = userObj.getString("username");
-                        responseEmail = userObj.getString("email");
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-                    Intent homeActivity = new Intent(MainActivity.this, HomeActivity.class);
-                    homeActivity.putExtra("username", responseUsername);
-                    homeActivity.putExtra("email", responseEmail);
-                    startActivity(homeActivity);
-                    finish();
-                }
-            }
-        });
+        client = new OkHttpClient();
+        MEDIA_TYPE = MediaType.parse("application/json");
+        logginByToken();
     }
 
     public void onCreateAccount(View view) {
-        Intent createAccount = new Intent(this,
-                CreateAccountActivity.class);
+        Intent createAccount = new Intent(this, CreateAccountActivity.class);
         startActivity(createAccount);
         finish();
     }
 
     public void onRecoverPassword(View view) {
-        Intent recoverPassword = new Intent(this,
-                RecoverPasswordActivity.class);
+        Intent recoverPassword = new Intent(this, RecoverPasswordActivity.class);
         startActivity(recoverPassword);
         finish();
     }
-}
 
+    public void login(View view) {
+        EditText username = findViewById(R.id.username);
+        EditText password = findViewById(R.id.password);
+
+        client.newCall(apiRequest.login(
+                username.getText().toString(),
+                password.getText().toString()
+        )).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {}
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    successfulLogin(response.body().string());
+                } else {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    R.string.wrong_UserPassword,
+                                    Toast.LENGTH_LONG
+                            ).show();
+                        }
+                    });
+                }
+                response.close();
+            }
+        });
+    }
+
+    private void logginByToken() {
+        String accessToken = settings.getString("accessToken", null);
+        client.newCall(apiRequest.loginByToken(accessToken)).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {}
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    successfulLogin(response.body().string());
+                }
+                response.close();
+            }
+        });
+    }
+
+    private void successfulLogin (String responseBody){
+        JSONObject userObj = null;
+        String responseUsername;
+        String responseEmail;
+        String responseToken;
+        try {
+            userObj = new JSONObject(responseBody);
+            responseUsername = userObj.getString("username");
+            responseEmail = userObj.getString("email");
+            responseToken = userObj.getString("accessToken");
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        editor.putString("username", responseUsername);
+        editor.putString("email", responseEmail);
+        editor.putString("accessToken",responseToken);
+        editor.commit();
+        Intent homeActivity = new Intent(MainActivity.this, HomeActivity.class);
+        startActivity(homeActivity);
+        finish();
+    }
+}

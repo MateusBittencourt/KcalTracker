@@ -1,6 +1,7 @@
 package com.example.kcaltracker.model;
 
 import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,6 +9,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class FoodItem {
+    public int id;
     public String tipo;
     public String descricao;
     public float umidade;
@@ -41,6 +43,7 @@ public class FoodItem {
     public float vitamina_c;
 
     public FoodItem(ArrayList<String> obj)  {
+        this.id = parseInt(obj.get(0));
         this.tipo = obj.get(1);
         this.descricao = obj.get(2);
         this.umidade = parseFloatSafe(obj.get(3));

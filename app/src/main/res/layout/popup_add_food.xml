@@ -25,7 +25,7 @@
             tools:ignore="TextContrastCheck" />
 
         <EditText
-            android:id="@+id/AddFood_Input_Grams"
+            android:id="@+id/AddFood_Input_Weight"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
@@ -63,9 +63,9 @@
             android:text="@string/grams"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/AddFood_Input_Grams"
+            app:layout_constraintBottom_toBottomOf="@+id/AddFood_Input_Weight"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/AddFood_Input_Grams"
+            app:layout_constraintTop_toTopOf="@+id/AddFood_Input_Weight"
             tools:ignore="TextSizeCheck" />
 
         <TextView
@@ -76,13 +76,13 @@
             android:text="@string/meal"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/AddFood_input_Meal"
+            app:layout_constraintBottom_toBottomOf="@+id/AddFood_Input_Meal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/AddFood_input_Meal"
+            app:layout_constraintTop_toTopOf="@+id/AddFood_Input_Meal"
             tools:ignore="TextSizeCheck" />
 
         <Spinner
-            android:id="@+id/AddFood_input_Meal"
+            android:id="@+id/AddFood_Input_Meal"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
@@ -92,7 +92,7 @@
             android:textColor="?android:attr/textColorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/AddFood_Text_Meal"
-            app:layout_constraintTop_toBottomOf="@+id/AddFood_Input_Grams" />
+            app:layout_constraintTop_toBottomOf="@+id/AddFood_Input_Weight" />
 
         <ImageView
             android:id="@+id/AddFood_Button_Close"
@@ -131,7 +131,7 @@
             android:minDate="01/01/2000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AddFood_input_Meal" />
+            app:layout_constraintTop_toBottomOf="@+id/AddFood_Input_Meal" />
 
         <TextView
             android:id="@+id/AddFood_Text_Add"

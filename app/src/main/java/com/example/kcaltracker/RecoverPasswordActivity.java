@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kcaltracker.model.ApiRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,10 +38,12 @@ public class RecoverPasswordActivity extends AppCompatActivity {
     TextView warningTextPassword;
     private MediaType MEDIA_TYPE = MediaType.parse("application/json");
     private OkHttpClient client = new OkHttpClient();
+    private ApiRequest apiRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        apiRequest = new ApiRequest();
         setContentView(R.layout.activity_recover_password);
 
         warningTextPassword  = findViewById(R.id.RecoverPassword_Text_warningPassword);
@@ -80,9 +84,6 @@ public class RecoverPasswordActivity extends AppCompatActivity {
     public void onRequestToken(View view) {
 
         editTextEmail = findViewById(R.id.RecoverPassword_Email);
-
-        String url = "http://192.168.18.32:3000/User/passwordRecovery";
-
         String email = editTextEmail.getText().toString();
 
 
@@ -92,43 +93,22 @@ public class RecoverPasswordActivity extends AppCompatActivity {
         } else {
             warningTextEmail.setText("");
             warningTextEmail.setVisibility(View.GONE);
-
-
-            String json = null;
-            try {
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("email", email);
-                json = jsonObject.toString();
-            }
-            catch (JSONException e) {
-                e.printStackTrace();
-            }
-            RequestBody body = RequestBody.create(json, MEDIA_TYPE);
-            Request request = new Request.Builder()
-                    .url(url)
-                    .post(body)
-                    .header("Accept", "application/json")
-                    .header("Content-Type", "application/json")
-                    .build();
-
-            client.newCall(request).enqueue(new Callback() {
+            client.newCall(apiRequest.passwordRecovery(email)).enqueue(new Callback() {
                 @Override
-                public void onFailure(Call call, IOException e) {
-
-                }
-
+                public void onFailure(Call call, IOException e) { }
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
                             Toast.makeText(
-                                getApplicationContext(),
-                                R.string.tokenSent,
-                                Toast.LENGTH_LONG
+                                    getApplicationContext(),
+                                    R.string.tokenSent,
+                                    Toast.LENGTH_LONG
                             ).show();
                         }
                     });
+                    response.close();
                 }
             });
         }
@@ -136,9 +116,6 @@ public class RecoverPasswordActivity extends AppCompatActivity {
 
     public void onSendToken(View view) {
         editTextToken = findViewById(R.id.RecoverPassword_Token);
-
-        String url = "http://192.168.18.32:3000/User/passwordInputToken";
-
         String token = editTextToken.getText().toString();
         String password = editTextPassword.getText().toString();
         String repassword = editTextRepassword.getText().toString();
@@ -148,53 +125,39 @@ public class RecoverPasswordActivity extends AppCompatActivity {
                 warningTextPassword.setText("");
                 warningTextPassword.setVisibility(View.GONE);
 
-                String json = null;
-                try {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("token", token);
-                    jsonObject.put("password", password);
-                    jsonObject.put("repassword", repassword);
-                    json = jsonObject.toString();
-                }
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                RequestBody body = RequestBody.create(json, MEDIA_TYPE);
-                Request request = new Request.Builder()
-                        .url(url)
-                        .post(body)
-                        .header("Accept", "application/json")
-                        .header("Content-Type", "application/json")
-                        .build();
-
-                client.newCall(request).enqueue(new Callback() {
+                client.newCall(apiRequest.passwordInputToken(token, password)).enqueue(new Callback() {
                     @Override
-                    public void onFailure(Call call, IOException e) {
-
-                    }
-
+                    public void onFailure(Call call, IOException e) { }
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         String responseBody = response.body().string();
-                        if (!response.isSuccessful()) {
-
+                        if (response.isSuccessful()) {
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(
+                                            getApplicationContext(),
+                                            R.string.successChangePassword,
+                                            Toast.LENGTH_LONG
+                                    ).show();
+                                }
+                            });;
+                            Intent mainActivity = new Intent(RecoverPasswordActivity.this, MainActivity.class);
+                            startActivity(mainActivity);
+                            finish();
                         } else {
-                            if (responseBody.equals("true")){
-                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(
-                                                getApplicationContext(),
-                                                R.string.successChangePassword,
-                                                Toast.LENGTH_LONG
-                                        ).show();
-                                    }
-                                });
-                                Intent mainActivity = new Intent(RecoverPasswordActivity.this, MainActivity.class);
-                                startActivity(mainActivity);
-                                finish();
-                            }
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(
+                                            getApplicationContext(),
+                                            R.string.errorChangingPassword,
+                                            Toast.LENGTH_LONG
+                                    ).show();
+                                }
+                            });
                         }
+                        response.close();
                     }
                 });
             } else {
