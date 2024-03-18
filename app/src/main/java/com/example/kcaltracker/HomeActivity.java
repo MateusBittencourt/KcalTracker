@@ -1,6 +1,7 @@
 package com.example.kcaltracker;
 
 import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -170,6 +171,68 @@ public class HomeActivity extends AppCompatActivity {
                         public void onResponse(Call call, Response response) throws IOException {
                             if (response.isSuccessful()) {
                                 myDialog.dismiss();
+                                tracker.getProgress();
+                            } else {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(
+                                                getApplicationContext(),
+                                                R.string.genericError,
+                                                Toast.LENGTH_LONG
+                                        ).show();
+                                    }
+                                });
+                            }
+                            response.close();
+                        }
+                    });
+                }
+            }
+        });
+        myDialog.show();
+    }
+
+    public void onEditGoal(View view){
+        myDialog.setContentView(R.layout.popup_edit_goal);
+        TextView currentGoal = (TextView) myDialog.findViewById(R.id.EditGoal_Text_CurrentGoal);
+        ImageView closeButton = (ImageView) myDialog.findViewById(R.id.EditGoal_Button_Close);
+        ImageView saveButton = (ImageView) myDialog.findViewById(R.id.EditGoal_Button_Set);
+        EditText goalEditText = (EditText) myDialog.findViewById(R.id.EditGoal_Input_Goal);
+        
+        currentGoal.setText("Current Goal: " + settings.getInt("goal", 0));
+        closeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick (View view) {
+                myDialog.dismiss();
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick (View view) {
+                String goal = goalEditText.getText().toString();
+                if (goal.isEmpty()){
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    R.string.missingFields,
+                                    Toast.LENGTH_LONG
+                            ).show();
+                        }
+                    });
+                } else {
+                    client.newCall(apiRequest.editGoal(accessToken, parseInt(goal))).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {}
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                myDialog.dismiss();
+                                editor.putInt("goal", parseInt(goal));
+                                editor.commit();
                                 tracker.getProgress();
                             } else {
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {

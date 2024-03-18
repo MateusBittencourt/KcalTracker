@@ -115,7 +115,7 @@ public class Tracker extends Fragment {
                 int goal = settings.getInt("goal", 0);
                 Log.d("Tracker", String.valueOf(goal));
                 if (goal == 0){
-                    uiGoal.setText("Calories");
+                    uiGoal.setText(R.string.calories);
                     divider.setVisibility(View.GONE);
                 } else {
                     divider.setVisibility(View.VISIBLE);

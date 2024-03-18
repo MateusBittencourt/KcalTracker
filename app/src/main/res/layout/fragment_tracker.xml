@@ -53,16 +53,18 @@
                     app:tint="@color/orange" />
 
                 <ImageView
-                    android:id="@+id/Tracker_Button_Edit"
+                    android:id="@+id/Tracker_Button_Goal"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="16dp"
-                    android:contentDescription="@string/edit_FoodItem"
-                    android:src="@drawable/edit_icon"
-                    app:tint="@color/orange"
+                    android:clickable="true"
+                    android:contentDescription="@string/edit_goal"
+                    android:onClick="onEditGoal"
+                    android:src="@drawable/goal_icon"
                     app:layout_constraintBottom_toTopOf="@+id/Tracker_Button_More"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Tracker_Button_Add" />
+                    app:layout_constraintTop_toBottomOf="@+id/Tracker_Button_Add"
+                    app:tint="@color/orange" />
 
                 <ImageView
                     android:id="@+id/Tracker_Button_More"

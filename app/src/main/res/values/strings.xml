@@ -47,4 +47,10 @@
     <string name="wrong_UserPassword">Wrong username or password</string>
     <string name="missingFields">Missing fields</string>
     <string name="calories">Calories</string>
+    <string name="edit_goal">Edit goal</string>
+    <string name="goal">Goal</string>
+    <string name="setGoal">Set goal</string>
+    <string name="currentGoal">Current goal:</string>
+    <string name="set">Set</string>
+    <string name="newGoal">New goal</string>
 </resources>

@@ -46,4 +46,11 @@
     <string name="add">Adicionar</string>
     <string name="wrong_UserPassword">Usuário ou senha incorretos</string>
     <string name="missingFields">Campos faltantes</string>
+    <string name="calories">Calorias</string>
+    <string name="edit_goal">Editar meta</string>
+    <string name="goal">Meta</string>
+    <string name="setGoal">Salvar</string>
+    <string name="currentGoal">Meta atual:</string>
+    <string name="set">Salvar</string>
+    <string name="newGoal">Nova meta</string>
 </resources>

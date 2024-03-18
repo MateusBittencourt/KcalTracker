@@ -27,7 +27,7 @@ public class ApiRequest {
     private RequestBody body;
     public ApiRequest () {
         MEDIA_TYPE = MediaType.parse("application/json");
-        backendAddress = "http://15.229.220.141:3000/";
+        backendAddress = "http://18.231.156.6:3000/";
     }
 
     private Request buildRequest (String url, JSONObject jsonObject){
@@ -122,5 +122,14 @@ public class ApiRequest {
             jsonObject.put("historyId", historyId);
         } catch (JSONException exception) { }
         return buildRequest("history/remove", jsonObject);
+    }
+    public Request editGoal(String accessToken, int goal) {
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject();
+            jsonObject.put("accessToken", accessToken);
+            jsonObject.put("goal", goal);
+        } catch (JSONException exception) { }
+        return buildRequest("user/setGoal", jsonObject);
     }
 }
