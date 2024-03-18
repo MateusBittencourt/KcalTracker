@@ -46,4 +46,5 @@
     <string name="add">Adicionar</string>
     <string name="wrong_UserPassword">Usuário ou senha incorretos</string>
     <string name="missingFields">Campos faltantes</string>
+    <string name="calories">Calories</string>
 </resources>

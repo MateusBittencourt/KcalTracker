@@ -170,6 +170,7 @@ public class HomeActivity extends AppCompatActivity {
                         public void onResponse(Call call, Response response) throws IOException {
                             if (response.isSuccessful()) {
                                 myDialog.dismiss();
+                                tracker.getProgress();
                             } else {
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                                     @Override

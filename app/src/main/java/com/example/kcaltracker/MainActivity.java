@@ -1,5 +1,8 @@
 package com.example.kcaltracker;
 
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.*;
@@ -104,17 +107,32 @@ public class MainActivity extends AppCompatActivity {
         String responseUsername;
         String responseEmail;
         String responseToken;
+        String responseName;
+        int responseGoal;
+        float responseWeight;
+        float responseHeight;
         try {
             userObj = new JSONObject(responseBody);
             responseUsername = userObj.getString("username");
             responseEmail = userObj.getString("email");
             responseToken = userObj.getString("accessToken");
+            responseName = !userObj.isNull("name") ? userObj.getString("name") : "";
+            responseGoal = !userObj.isNull("goal") ? parseInt(userObj.getString("goal")) : 0;
+            responseWeight = !userObj.isNull("weight") ? parseFloat(userObj.getString("weight")) : (float) 0.0;
+            responseHeight = !userObj.isNull("height") ? parseFloat(userObj.getString("height")) : (float) 0.0;
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+
+
+
         editor.putString("username", responseUsername);
         editor.putString("email", responseEmail);
         editor.putString("accessToken",responseToken);
+        editor.putString("name",responseName);
+        editor.putInt("goal",responseGoal);
+        editor.putFloat("weight",responseWeight);
+        editor.putFloat("height",responseHeight);
         editor.commit();
         Intent homeActivity = new Intent(MainActivity.this, HomeActivity.class);
         startActivity(homeActivity);

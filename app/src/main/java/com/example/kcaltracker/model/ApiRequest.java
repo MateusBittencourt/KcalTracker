@@ -27,7 +27,7 @@ public class ApiRequest {
     private RequestBody body;
     public ApiRequest () {
         MEDIA_TYPE = MediaType.parse("application/json");
-        backendAddress = "http://192.168.18.32:3000/";
+        backendAddress = "http://15.229.220.141:3000/";
     }
 
     private Request buildRequest (String url, JSONObject jsonObject){
